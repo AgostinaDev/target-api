@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+topic_descriptions = %w[Music\ Sports\ Videogames\ Gardening\ Travelling\ Space]
+topic_descriptions do |description|
+  topic = Topic.find_or_create_by!(description: description)
+end
