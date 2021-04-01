@@ -25,8 +25,8 @@ gem 'sass-rails', '>= 6'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'activeadmin', '~> 2.9.0'
+gem 'aws-sdk-s3', '~> 1.93.0', require: false
 gem 'devise', '~> 4.7.3'
-gem 'figaro', '~> 1.2.0'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -36,6 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rspec-rails', '~> 5.0.0'
+  gem 'dotenv-rails', '~> 2.7.2'
 end
 
 group :development do
