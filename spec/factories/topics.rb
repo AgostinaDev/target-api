@@ -10,5 +10,9 @@
 FactoryBot.define do
   factory :topic do
     description { Faker::Lorem.sentence }
+
+    trait :with_image do
+      image { Rack::Test::UploadedFile.new('spec/support/assets/test-image.png', 'image/png') }
+    end
   end
 end
