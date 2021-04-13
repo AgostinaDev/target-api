@@ -61,6 +61,19 @@ ActiveRecord::Schema.define(version: 2021_04_12_130819) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "targets", force: :cascade do |t|
+    t.integer "radius", null: false
+    t.string "title", limit: 50, null: false
+    t.decimal "longitude", precision: 10, scale: 6, null: false
+    t.decimal "latitude", precision: 10, scale: 6, null: false
+    t.bigint "user_id"
+    t.bigint "topic_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_targets_on_topic_id"
+    t.index ["user_id"], name: "index_targets_on_user_id"
+  end
+
   create_table "topics", force: :cascade do |t|
     t.string "description", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -84,4 +97,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_130819) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "targets", "topics"
+  add_foreign_key "targets", "users"
 end

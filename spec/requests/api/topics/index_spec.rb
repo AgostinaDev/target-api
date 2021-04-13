@@ -8,7 +8,8 @@ RSpec.describe 'GET Topics', type: :request do
     end
   end
 
-  subject(:get_topics) { get api_v1_topics_path, as: :json }
+  subject(:get_topics) { get api_v1_topics_path, headers: auth_headers, as: :json }
+  let(:user) { create(:user) }
 
   context 'when there are topics' do
     let!(:topics) { create_list(:topic, 2, :with_image) }
