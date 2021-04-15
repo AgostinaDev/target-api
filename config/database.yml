@@ -23,9 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV.fetch("DB_NAME") { 'target_test' } %>
-  user: <%= ENV.fetch("DB_USERNAME") { 'username' } %>
-  password: <%= ENV.fetch("DB_PASSWORD") { 'password' } %>
+  database: <%= ENV.fetch("DB_NAME") { '' } %>
+  user: <%= ENV.fetch("DB_USERNAME") { '' } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { '' } %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

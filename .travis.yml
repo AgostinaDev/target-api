@@ -1,0 +1,27 @@
+language: ruby
+rvm:
+ - 3.0.0
+ - ruby-head
+dist: bionic
+jobs:
+  allow_failures:
+    - rvm: ruby-head
+env:
+  global:
+    - CC_TEST_REPORTER_ID=8d3087e8277d5591f1561d456c139596419edd1a2e9d492f2809c53dd3d6fbf3
+    - PGPORT=5433
+    - PGUSER=travis
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - bundle exec rake code_analysis
+  - bundle exec rspec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+services:
+  - postgresql
+addons:
+  postgresql: "13.2"
